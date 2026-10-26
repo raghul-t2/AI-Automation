@@ -11,16 +11,17 @@ case memory, an audit trail and mandatory human approval.
 
 ## Project documents
 
-| Document | Where |
-|---|---|
-| Revised project proposal | [Claude Doc](https://claude.ai/artifact/2CrnTotkyGcSCAnKXYYMqD) (download as Word/PDF from the doc) |
-| Final project report | [Claude Doc](https://claude.ai/artifact/669uMwWjQSSxNMvCy1FGoy) |
-| Viva presentation (14 slides, speaker notes) | [Slides](https://claude.ai/artifact/U937taM9YoZEM8QuZ9m5jA) (export to PowerPoint/PDF) |
-| Test results and KPI comparison | [docs/test_results.md](docs/test_results.md) |
-| Architecture and LangGraph diagrams | [docs/images/architecture.png](docs/images/architecture.png), [docs/images/langgraph_graph.png](docs/images/langgraph_graph.png) |
-| App screenshots | [docs/images/](docs/images/) |
+All documents are in the [docs/](docs/) folder. Open the `.md` files directly on GitHub; download the Word, PDF or PowerPoint files to submit or present.
 
-The three Claude links are private to their owner until shared from each page's Share menu.
+| Document | Read on GitHub | Download |
+|---|---|---|
+| Revised project proposal | [Project_Proposal_Revised.md](docs/Project_Proposal_Revised.md) | [Word](docs/Project_Proposal_Revised.docx) |
+| Final project report | [Final_Report.md](docs/Final_Report.md) | [Word](docs/Final_Report.docx) |
+| Viva presentation (14 slides, speaker notes in the PowerPoint) | [PDF](docs/Viva_Presentation.pdf) | [PowerPoint](docs/Viva_Presentation.pptx) |
+| Test results and KPI comparison | [test_results.md](docs/test_results.md) | |
+| Diagrams and app screenshots | [docs/images/](docs/images/) | |
+
+Fill in `[Team members]` and the viva date before submitting. The PowerPoint slides are images; edit wording in the Word documents or regenerate the deck.
 
 ## Setup (each laptop does this once)
 
