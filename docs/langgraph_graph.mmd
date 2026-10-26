@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	onboarding(onboarding)
+	risk(risk)
+	financial(financial)
+	recommendation(recommendation)
+	compliance(compliance)
+	exception(exception)
+	human_review(human_review)
+	__end__([<p>__end__</p>]):::last
+	__start__ -.-> compliance;
+	__start__ -.-> onboarding;
+	__start__ -.-> recommendation;
+	__start__ -.-> risk;
+	compliance -.-> exception;
+	compliance -.-> human_review;
+	exception -.-> human_review;
+	exception -.-> recommendation;
+	financial -.-> __end__;
+	financial -.-> recommendation;
+	onboarding -.-> __end__;
+	onboarding -.-> risk;
+	recommendation --> compliance;
+	risk -.-> __end__;
+	risk -.-> financial;
+	human_review --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

@@ -1,0 +1,40 @@
+flowchart TB
+    U["Client / Financial Advisor<br/>(Streamlit dashboard)"] --> O
+
+    subgraph ORCH["Orchestrator Agent — LangGraph StateGraph"]
+        O{{"Route on case state"}}
+    end
+
+    O --> A1["1 · Onboarding Agent<br/>LLM notes extraction + Python validation"]
+    A1 -- "missing / inconsistent" --> P1(["Pause: request information"])
+    A1 -- valid --> A2["2 · Risk Profiling Agent<br/>Fixed scoring formula (Python)"]
+    A2 -- "questionnaire incomplete" --> P1
+    A2 -- complete --> A3["3 · Financial Analysis Agent<br/>Surplus, emergency cover, binding limits"]
+    A3 --> A4["4 · Recommendation Agent<br/>Template / re-plan (Python, NumPy)<br/>+ KB retrieval + LLM explanation"]
+    A4 --> A5["5 · Compliance Agent<br/>Rules C1–C7 (Python) + KB retrieval<br/>+ LLM explanation of failures"]
+    A5 -- PASS --> H
+    A5 -- "FAIL / NEEDS REVIEW" --> X["Exception handling<br/>(Orchestrator)"]
+    X -- "re-plan (max 2)" --> A4
+    X -- "unresolved / locked mandate /<br/>advisor change failed" --> H
+
+    H["Human Advisor Review<br/>Approve · Modify · Reject"]
+    H -- "Modify → re-run checks" --> A5
+    H -- "Reject + reason" --> A4
+    H -- Approve --> R["Final report<br/>(ReportLab PDF)"]
+
+    KB[("Controlled knowledge base<br/>8 project rule documents")] -.-> A4
+    KB -.-> A5
+    LLM[("Local LLM<br/>Llama 3.2 3B via Ollama")] -.-> A1
+    LLM -.-> A4
+    LLM -.-> A5
+    DB[("SQLite<br/>case memory + audit log")] -.- ORCH
+
+    classDef agent fill:#E6F4F2,stroke:#0E9384,color:#0B2545
+    classDef human fill:#FEF4E2,stroke:#C98A00,color:#0B2545
+    classDef store fill:#E8EEF8,stroke:#1D4E89,color:#0B2545
+    classDef stop fill:#FDECEC,stroke:#B42318,color:#0B2545
+    class A1,A2,A3,A4,A5,X agent
+    class H,U human
+    class KB,LLM,DB store
+    class P1 stop
+    class R agent
